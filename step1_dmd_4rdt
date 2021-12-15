@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#SBATCH --partition=compute
+#SBATCH --job-name=step1_dmd_4rdt.txt
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=anmeyer@whoi.edu
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=20G
+#SBATCH --time=5:00:00
+#SBATCH --output=step1_dmd_4rdt_%j.log
+
+omplex.linux -P pDMD/parameter/ -I /vortexfs1/home/anmeyer/structures/step2_solvator.pdb -D dimension -p param -s state -T
+topparam -C inConst -c constraint
